@@ -15,10 +15,6 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        
-
-
         //control forward force in Unity Inspector
         rb.AddForce(0, 0, forwardForce * Time.deltaTime);
         
@@ -38,6 +34,11 @@ public class Movement : MonoBehaviour
         {
             if(forwardForce > 0)    
                 rb.AddForce((forwardForce += decreaseFwdForce) * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        }
+
+        if(rb.position.y < -2f)
+        {
+            FindObjectOfType<GameManager>().GameOver();
         }
     }
 }
